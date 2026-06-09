@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lako Pose – Artisan tous corps d'état dans les Bouches-du-Rhône. Maçonnerie, plomberie, électricité, peinture, carrelage. Devis gratuit." />
+  <title>Lako Pose – Artisan BTP Bouches-du-Rhône</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --bg:        #0b0f19;
+      --bg-2:      #111827;
+      --bg-card:   #161d2e;
+      --border:    rgba(255,255,255,.08);
+      --accent:    #f97316;
+      --accent-2:  #fb923c;
+      --text:      #f1f5f9;
+      --muted:     #94a3b8;
+      --radius:    12px;
+      --shadow:    0 4px 32px rgba(0,0,0,.4);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ── Utils ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); background: rgba(249,115,22,.12);
+      border: 1px solid rgba(249,115,22,.25);
+      border-radius: 100px; padding: 4px 12px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; line-height: 1.15;
+      margin: 16px 0 20px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 540px; line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px;
+      font-size: .95rem; font-weight: 600;
+      border: none; transition: all .2s ease;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(249,115,22,.35); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.05); }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0;
+      transition: background .3s, padding .3s, box-shadow .3s;
+    }
+    .nav.scrolled {
+      background: rgba(11,15,25,.92);
+      backdrop-filter: blur(16px);
+      padding: 14px 0;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-links a {
+      font-size: .9rem; font-weight: 500; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { margin-left: 16px; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all .3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: var(--bg); padding: 100px 24px 40px;
+      flex-direction: column; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; font-weight: 700; color: var(--text);
+      border-bottom: 1px solid var(--border); padding-bottom: 16px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100dvh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(249,115,22,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(249,115,22,.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 28px;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(.8); }
+    }
+    .hero-eyebrow span { font-size: .85rem; font-weight: 500; color: var(--muted); }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-desc {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 520px; line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .hero-phone {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .9rem; color: var(--muted);
+      padding: 14px 20px; border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .hero-phone:hover { border-color: rgba(255,255,255,.2); color: var(--text); }
+    .hero-phone svg { color: var(--accent); }
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap;
+    }
+    .hero-stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem; font-weight: 800;
+      color: var(--text);
+    }
+    .hero-stat-value span { color: var(--accent); }
+    .hero-stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+    .hero-badge {
+      position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      display: none;
+    }
+    @media (min-width: 1024px) { .hero-badge { display: block; } }
+    .badge-ring {
+      width: 340px; height: 340px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .badge-ring::before {
+      content: '';
+      position: absolute; inset: -1px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, rgba(249,115,22,.4), transparent 60%) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+    .badge-inner {
+      width: 240px; height: 240px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+    }
+    .badge-icon { font-size: 3rem; }
+    .badge-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      text-align: center; line-height: 1.3;
+    }
+    .badge-sub { font-size: .75rem; color: var(--muted); }
+    .orbit-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: var(--accent); border-radius: 50%;
+      box-shadow: 0 0 16px var(--accent);
+    }
+    .orbit-dot:nth-child(2) { top: 10px; left: 50%; transform: translateX(-50%); }
+    .orbit-dot:nth-child(3) { bottom: 10px; right: 20%; }
+    .orbit-dot:nth-child(4) { left: 10px; top: 40%; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--bg-2); }
+    .services-header { text-align: center; margin-bottom: 56px; }
+    .services-header .section-sub { margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--bg-card);
+      padding: 36px 32px;
+      transition: background .2s;
+      cursor: default;
+    }
+    .service-card:hover { background: #1a2236; }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: rgba(249,115,22,.1);
+      border: 1px solid rgba(249,115,22,.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { color: var(--accent); }
+    .service-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .service-desc { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+    .service-tags {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px;
+    }
+    .service-tag {
+      font-size: .72rem; font-weight: 500;
+      color: var(--muted); background: rgba(255,255,255,.05);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 3px 9px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .about-image {
+      position: relative;
+    }
+    .about-img-wrap {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+      background: var(--bg-card);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-img-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; color: var(--muted);
+    }
+    .about-img-placeholder svg { opacity: .3; }
+    .about-badge-float {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--accent);
+      border-radius: 12px; padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: var(--shadow);
+    }
+    .about-badge-float .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800; color: #fff;
+    }
+    .about-badge-float .lbl { font-size: .75rem; color: rgba(255,255,255,.8); line-height: 1.3; }
+    .about-content .section-sub { margin-bottom: 32px; }
+    .about-list { display: flex; flex-direction: column; gap: 16px; }
+    .about-list-item {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .about-check {
+      width: 24px; height: 24px; flex-shrink: 0;
+      background: rgba(249,115,22,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .about-check svg { color: var(--accent); }
+    .about-list-text { font-size: .95rem; color: var(--muted); line-height: 1.6; }
+    .about-list-text strong { color: var(--text); }
+
+    /* ── REALIZATIONS ── */
+    .realizations { background: var(--bg-2); }
+    .realizations-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 48px;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .realization-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .realization-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .realization-grid { grid-template-columns: 1fr; }
+    }
+    .realization-card {
+      border-radius: var(--radius); overflow: hidden;
+      position: relative; cursor: pointer;
+      border: 1px solid var(--border);
+    }
+    .realization-card:first-child {
+      grid-column: span 2; grid-row: span 2;
+    }
+    @media (max-width: 768px) {
+      .realization-card:first-child { grid-column: span 2; grid-row: span 1; }
+    }
+    .realization-img {
+      width: 100%; height: 100%; min-height: 200px;
+      background: var(--bg-card);
+      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 4/3;
+      transition: transform .4s ease;
+    }
+    .realization-card:first-child .realization-img {
+      aspect-ratio: unset; min-height: 400px;
+    }
+    .realization-card:hover .realization-img { transform: scale(1.04); }
+    .realization-img svg { opacity: .15; }
+    .realization-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .realization-card:hover .realization-overlay { opacity: 1; }
+    .realization-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700; color: #fff;
+    }
+    .realization-type { font-size: .8rem; color: rgba(255,255,255,.7); margin-top: 2px; }
+
+    /* ── PROCESS ── */
+    .process-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0; position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 40px; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    @media (max-width: 768px) { .process-steps::before { display: none; } }
+    .process-step { text-align: center; padding: 32px 24px; }
+    .step-num {
+      width: 56px; height: 56px; margin: 0 auto 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800;
+      color: var(--accent);
+      position: relative; z-index: 1;
+    }
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .step-desc { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── ZONE ── */
+    .zone { background: var(--bg-2); }
+    .zone-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    @media (max-width: 768px) { .zone-inner { grid-template-columns: 1fr; } }
+    .zone-map {
+      background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 16px;
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .zone-map-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(249,115,22,.08), transparent 70%);
+    }
+    .zone-cities {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+    }
+    .city-chip {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 500;
+      color: var(--muted); background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 7px 14px;
+      transition: all .2s;
+    }
+    .city-chip:hover { border-color: var(--accent); color: var(--text); }
+    .city-chip svg { color: var(--accent); width: 12px; height: 12px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color .2s;
+    }
+    .testimonial-card:hover { border-color: rgba(249,115,22,.3); }
+    .stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .star { color: var(--accent); font-size: 1rem; }
+    .testimonial-text {
+      font-size: .95rem; color: var(--muted); line-height: 1.75;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(249,115,22,.15);
+      border: 1px solid rgba(249,115,22,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: .9rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .author-name { font-weight: 600; font-size: .9rem; }
+    .author-city { font-size: .8rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px;
+    }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .contact-icon-wrap {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: rgba(249,115,22,.1);
+      border: 1px solid rgba(249,115,22,.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon-wrap svg { color: var(--accent); }
+    .contact-item-title { font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
+    .contact-item-value { font-size: .9rem; color: var(--muted); line-height: 1.5; }
+    .contact-item-value a { color: var(--accent); transition: opacity .2s; }
+    .contact-item-value a:hover { opacity: .8; }
+
+    /* Form */
+    .form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-label { font-size: .85rem; font-weight: 500; color: var(--muted); }
+    .form-input, .form-select, .form-textarea {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text); font-family: inherit; font-size: .95rem;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+      min-height: 48px;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(249,115,22,.15);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-select { appearance: none; }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(148,163,184,.4); }
+    .form-submit { align-self: flex-start; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800; margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; max-width: 280px; }
+    .footer-col-title {
+      font-family: 'Syne', sans-serif;
+      font-size: .85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: .88rem; color: var(--muted); transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 24px; border-top: 1px solid var(--border);
+      font-size: .8rem; color: var(--muted);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom a { color: var(--accent); }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(249,115,22,.15), rgba(249,115,22,.05));
+      border: 1px solid rgba(249,115,22,.2);
+      border-radius: 20px;
+      padding: 56px 48px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(249,115,22,.08), transparent 50%);
+      pointer-events: none;
+    }
+    .cta-banner .section-title { margin: 16px 0 12px; }
+    .cta-banner .section-sub { margin: 0 auto 32px; text-align: center; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: 2.4rem; }
+      .cta-banner { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" aria-label="Lako Pose – Accueil">Lako<span>Pose</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#zone">Zone</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Devis gratuit</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu mobile">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#about" class="mobile-link">À propos</a>
+    <a href="#realisations" class="mobile-link">Réalisations</a>
+    <a href="#zone" class="mobile-link">Zone</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Devis gratuit</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container" style="width:100%; display:flex; align-items:center; justify-content:space-between;">
+        <div class="hero-content">
+          <div class="hero-eyebrow reveal">
+            <div class="hero-dot" aria-hidden="true"></div>
+            <span>Artisan certifié · Bouches-du-Rhône</span>
+          </div>
+          <h1 class="hero-title reveal reveal-delay-1" id="hero-title">
+            Votre artisan<br /><span class="accent">tous corps d'état</span><br />en PACA
+          </h1>
+          <p class="hero-desc reveal reveal-delay-2">
+            Lako Pose intervient pour tous vos travaux de rénovation et de construction dans les Bouches-du-Rhône. Qualité professionnelle, délais respectés, devis gratuit sous 48h.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#contact" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+              Devis gratuit
+            </a>
+            <a href="tel:+33600000000" class="hero-phone">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+              06 00 00 00 00
+            </a>
+          </div>
+          <div class="hero-stats reveal reveal-delay-4">
+            <div>
+              <div class="hero-stat-value">10<span>+</span></div>
+              <div class="hero-stat-label">Années d'expérience</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">200<span>+</span></div>
+              <div class="hero-stat-label">Chantiers réalisés</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">100<span>%</span></div>
+              <div class="hero-stat-label">Clients satisfaits</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-badge" aria-hidden="true">
+          <div class="badge-ring">
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+            <div class="badge-inner">
+              <div class="badge-icon">🏗️</div>
+              <div class="badge-text">Tous corps<br />d'état</div>
+              <div class="badge-sub">BTP · PACA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="services-header reveal">
+          <div class="tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+            Nos services
+          </div>
+          <h2 class="section-title" id="services-title">Une expertise complète<br />pour tous vos travaux</h2>
+          <p class="section-sub">De la rénovation à la construction neuve, Lako Pose prend en charge l'ensemble de vos projets avec le même niveau d'exigence.</p>
+        </div>
+        <div class="services-grid">
+
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </div>
+            <h3 class="service-name">Maçonnerie</h3>
+            <p class="service-desc">Construction, rénovation de murs, fondations, dallage et tous travaux de gros œuvre pour vos projets résidentiels et commerciaux.</p>
+            <div class="service-tags">
+              <span class="service-tag">Fondations</span>
+              <span class="service-tag">Murs porteurs</span>
+              <span class="service-tag">Dallage</span>
+              <span class="service-tag">Enduit</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-1">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="service-name">Plâtrerie & Isolation</h3>
+            <p class="service-desc">Pose de cloisons, doublage thermique et phonique, faux plafonds et tout travaux de second œuvre pour un intérieur parfait.</p>
+            <div class="service-tags">
+              <span class="service-tag">Placoplatre</span>
+              <span class="service-tag">ITE</span>
+              <span class="service-tag">Faux plafond</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-2">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="service-name">Plomberie</h3>
+            <p class="service-desc">Installation, rénovation et dépannage de vos installations sanitaires et de chauffage. Certifié RGE pour les travaux d'économie d'énergie.</p>
+            <div class="service-tags">
+              <span class="service-tag">Sanitaires</span>
+              <span class="service-tag">Chauffage</span>
+              <span class="service-tag">Dépannage</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-3">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <h3 class="service-name">Électricité</h3>
+            <p class="service-desc">Mise aux normes, tableau électrique, installation complète neuve ou en rénovation. Conformité NF C 15-100 garantie.</p>
+            <div class="service-tags">
+              <span class="service-tag">Tableau élec.</span>
+              <span class="service-tag">Mise aux normes</span>
+              <span class="service-tag">Éclairage</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V8l8-6 8 6v12"/></svg>
+            </div>
+            <h3 class="service-name">Carrelage & Sol</h3>
+            <p class="service-desc">Pose de carrelage, parquet, vinyle et tous revêtements de sol et mural pour sublimer vos espaces intérieurs et extérieurs.</p>
+            <div class="service-tags">
+              <span class="service-tag">Carrelage</span>
+              <span class="service-tag">Parquet</span>
+              <span class="service-tag">Terrasse</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-1">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="service-name">Peinture & Finitions</h3>
+            <p class="service-desc">Peinture intérieure et extérieure, enduits décoratifs, ravalement de façade. Finitions soignées pour un résultat impeccable.</p>
+            <div class="service-tags">
+              <span class="service-tag">Intérieur</span>
+              <span class="service-tag">Façade</span>
+              <span class="service-tag">Enduit</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image reveal">
+            <div class="about-img-wrap">
+              <div class="about-img-placeholder">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span style="font-size:.85rem">Photo de l'artisan</span>
+              </div>
+            </div>
+            <div class="about-badge-float">
+              <div class="num">10+</div>
+              <div>
+                <div class="lbl">Années<br />d'expérience</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-content reveal reveal-delay-1">
+            <div class="tag">À propos</div>
+            <h2 class="section-title" id="about-title">Un artisan de confiance à votre service</h2>
+            <p class="section-sub">Lako Pose, c'est un artisan passionné qui met son savoir-faire au service des particuliers et professionnels des Bouches-du-Rhône depuis plus de 10 ans.</p>
+            <ul class="about-list" role="list">
+              <li class="about-list-item">
+                <div class="about-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="about-list-text"><strong>Devis gratuit et transparent</strong> — Pas de mauvaises surprises : chaque poste est clairement détaillé avant le démarrage des travaux.</p>
+              </li>
+              <li class="about-list-item">
+                <div class="about-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="about-list-text"><strong>Travaux garantis décennaux</strong> — Tous les travaux de construction et rénovation sont couverts par une garantie décennale.</p>
+              </li>
+              <li class="about-list-item">
+                <div class="about-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="about-list-text"><strong>Réactivité et respect des délais</strong> — Intervention rapide, planning respecté, chantier propre et organisé à chaque étape.</p>
+              </li>
+              <li class="about-list-item">
+                <div class="about-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="about-list-text"><strong>Éligible aux aides de l'État</strong> — Accompagnement pour les dossiers MaPrimeRénov', CEE et autres dispositifs d'aide à la rénovation.</p>
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-primary" style="margin-top:32px;">Prendre contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REALIZATIONS -->
+    <section class="section realizations" id="realisations" aria-labelledby="realisations-title">
+      <div class="container">
+        <div class="realizations-header reveal">
+          <div>
+            <div class="tag">Réalisations</div>
+            <h2 class="section-title" id="realisations-title">Nos derniers chantiers</h2>
+          </div>
+          <a href="#contact" class="btn btn-outline">Voir tous les projets</a>
+        </div>
+        <div class="realization-grid">
+          <div class="realization-card reveal">
+            <div class="realization-img" style="background: linear-gradient(135deg, #1a2236, #0f172a);">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="realization-overlay">
+              <div>
+                <div class="realization-label">Villa rénovation complète</div>
+                <div class="realization-type">Maçonnerie · Plomberie · Électricité · Peinture</div>
+              </div>
+            </div>
+          </div>
+          <div class="realization-card reveal reveal-delay-1">
+            <div class="realization-img" style="background: linear-gradient(135deg, #1e1a2e, #0f1218);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </div>
+            <div class="realization-overlay">
+              <div>
+                <div class="realization-label">Salle de bain</div>
+                <div class="realization-type">Carrelage · Plomberie</div>
+              </div>
+            </div>
+          </div>
+          <div class="realization-card reveal reveal-delay-2">
+            <div class="realization-img" style="background: linear-gradient(135deg, #1a2a1e, #0f1812);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="realization-overlay">
+              <div>
+                <div class="realization-label">Terrasse extérieure</div>
+                <div class="realization-type">Maçonnerie · Carrelage</div>
+              </div>
+            </div>
+          </div>
+          <div class="realization-card reveal">
+            <div class="realization-img" style="background: linear-gradient(135deg, #2a1a1a, #180f0f);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+            </div>
+            <div class="realization-overlay">
+              <div>
+                <div class="realization-label">Mise aux normes élec.</div>
+                <div class="realization-type">Électricité · Tableau</div>
+              </div>
+            </div>
+          </div>
+          <div class="realization-card reveal reveal-delay-1">
+            <div class="realization-img" style="background: linear-gradient(135deg, #1a1e2a, #0f1218);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><path d="M2 20h20M4 20V8l8-6 8 6v12"/></svg>
+            </div>
+            <div class="realization-overlay">
+              <div>
+                <div class="realization-label">Rénovation cuisine</div>
+                <div class="realization-type">Plâtrerie · Peinture · Sol</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" aria-labelledby="process-title">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:56px;" class="reveal">
+          <div class="tag">Notre méthode</div>
+          <h2 class="section-title" id="process-title">Comment ça se passe ?</h2>
+          <p class="section-sub" style="margin: 0 auto;">Un processus simple et transparent pour que votre projet se déroule sans stress.</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step reveal">
+            <div class="step-num" aria-hidden="true">01</div>
+            <h3 class="step-title">Contact & Visite</h3>
+            <p class="step-desc">Vous nous contactez, on se déplace pour évaluer votre projet gratuitement et sans engagement.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-1">
+            <div class="step-num" aria-hidden="true">02</div>
+            <h3 class="step-title">Devis détaillé</h3>
+            <p class="step-desc">Vous recevez un devis clair et transparent sous 48h, avec chaque prestation détaillée.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-2">
+            <div class="step-num" aria-hidden="true">03</div>
+            <h3 class="step-title">Réalisation</h3>
+            <p class="step-desc">Nos équipes interviennent dans les délais convenus. Chantier propre et suivi régulier.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-3">
+            <div class="step-num" aria-hidden="true">04</div>
+            <h3 class="step-title">Livraison</h3>
+            <p class="step-desc">Visite de réception avec vous. Satisfaction garantie avant tout règlement final.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZONE -->
+    <section class="section zone" id="zone" aria-labelledby="zone-title">
+      <div class="container">
+        <div class="zone-inner">
+          <div class="reveal">
+            <div class="tag">Zone d'intervention</div>
+            <h2 class="section-title" id="zone-title">Nous intervenons dans tout le 13</h2>
+            <p class="section-sub">Lako Pose couvre l'ensemble des Bouches-du-Rhône et ses alentours. Contactez-nous pour vérifier notre disponibilité dans votre commune.</p>
+            <div class="zone-cities" role="list" aria-label="Villes couvertes">
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Marseille
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Aix-en-Provence
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Aubagne
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Martigues
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Salon-de-Provence
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Istres
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Vitrolles
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                La Ciotat
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Arles
+              </div>
+              <div class="city-chip" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                + Tout le 13
+              </div>
+            </div>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <div class="zone-map" aria-label="Carte des Bouches-du-Rhône">
+              <div class="zone-map-bg" aria-hidden="true"></div>
+              <svg width="200" height="200" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                <path d="M40 80 L60 40 L100 30 L140 50 L160 80 L150 130 L120 160 L80 155 L50 130 Z" stroke="#f97316" stroke-width="1.5" fill="rgba(249,115,22,.06)" stroke-dasharray="4,3"/>
+                <circle cx="100" cy="95" r="6" fill="#f97316" opacity=".9"/>
+                <circle cx="100" cy="95" r="14" fill="rgba(249,115,22,.15)"/>
+                <text x="100" y="130" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Inter">Bouches-du-Rhône</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:48px;" class="reveal">
+          <div class="tag">Avis clients</div>
+          <h2 class="section-title" id="testimonials-title">Ce que disent nos clients</h2>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial-card reveal">
+            <div class="stars" aria-label="5 étoiles sur 5">
+              <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+            </div>
+            <p class="testimonial-text">« Lako Pose a réalisé la rénovation complète de notre villa à Aix. Travail impeccable, délais respectés et équipe très professionnelle. Je recommande vivement ! »</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">MB</div>
+              <div>
+                <div class="author-name">Marie-Bénédicte R.</div>
+                <div class="author-city">Aix-en-Provence</div>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal reveal-delay-1">
+            <div class="stars" aria-label="5 étoiles sur 5">
+              <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+            </div>
+            <p class="testimonial-text">« Devis reçu rapidement, intervention dans les 2 semaines. La salle de bain est magnifique, carrelage parfaitement posé. Très satisfait du résultat ! »</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">JL</div>
+              <div>
+                <div class="author-name">Jean-Luc M.</div>
+                <div class="author-city">Marseille 8e</div>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal reveal-delay-2">
+            <div class="stars" aria-label="5 étoiles sur 5">
+              <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+            </div>
+            <p class="testimonial-text">« Mise aux normes électriques faite en 2 jours, propre et sans problème. Tarif honnête, artisan de confiance. N'hésitez pas à faire appel à lui. »</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">SC</div>
+              <div>
+                <div class="author-name">Sophie C.</div>
+                <div class="author-city">Aubagne</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="section-sm" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-banner reveal">
+          <div class="tag" style="margin: 0 auto;">Prêt à démarrer ?</div>
+          <h2 class="section-title" id="cta-title">Un projet en tête ?<br />Parlons-en.</h2>
+          <p class="section-sub">Contactez-nous dès aujourd'hui pour obtenir votre devis gratuit. Réponse sous 48h garantie.</p>
+          <div class="cta-actions">
+            <a href="#contact" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+              Demander un devis
+            </a>
+            <a href="tel:+33600000000" class="btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+              Appeler maintenant
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" aria-labelledby="contact-title" style="background: var(--bg-2);">
+      <div class="container">
+        <div style="margin-bottom:48px;" class="reveal">
+          <div class="tag">Contact</div>
+          <h2 class="section-title" id="contact-title">Demandez votre devis gratuit</h2>
+          <p class="section-sub">Remplissez le formulaire, nous vous recontactons sous 48h pour organiser une visite.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="contact-item">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-title">Téléphone</div>
+                <div class="contact-item-value"><a href="tel:+33600000000">06 00 00 00 00</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-title">Email</div>
+                <div class="contact-item-value"><a href="mailto:contact@lakpose.fr">contact@lakpose.fr</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-title">Zone d'intervention</div>
+                <div class="contact-item-value">Bouches-du-Rhône (13)<br />et alentours</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-title">Disponibilité</div>
+                <div class="contact-item-value">Lun – Ven : 7h30 – 18h<br />Sam : 8h – 13h</div>
+              </div>
+            </div>
+          </div>
+
+          <form class="form reveal reveal-delay-1" id="contactForm" novalidate aria-label="Formulaire de devis">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="nom">Nom <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="nom" name="nom" placeholder="Dupont" required autocomplete="family-name" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="prenom">Prénom <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="prenom" name="prenom" placeholder="Jean" required autocomplete="given-name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="tel">Téléphone <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="tel" id="tel" name="tel" placeholder="06 00 00 00 00" required autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="jean@email.fr" autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ville">Ville <span aria-hidden="true">*</span></label>
+              <input class="form-input" type="text" id="ville" name="ville" placeholder="Marseille, Aix-en-Provence..." required autocomplete="address-level2" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="service">Type de travaux <span aria-hidden="true">*</span></label>
+              <select class="form-select" id="service" name="service" required>
+                <option value="" disabled selected>Choisir un service</option>
+                <option value="maconnerie">Maçonnerie</option>
+                <option value="platerie">Plâtrerie & Isolation</option>
+                <option value="plomberie">Plomberie</option>
+                <option value="electricite">Électricité</option>
+                <option value="carrelage">Carrelage & Sol</option>
+                <option value="peinture">Peinture & Finitions</option>
+                <option value="renovation">Rénovation complète</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Description du projet</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Décrivez votre projet, la surface approximative, votre calendrier..."></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Envoyer ma demande
+              </button>
+            </div>
+            <p id="form-success" role="alert" aria-live="polite" style="display:none; color:#4ade80; font-size:.9rem; margin-top:8px;">
+              ✓ Message envoyé ! Nous vous recontactons sous 48h.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">Lako<span>Pose</span></div>
+          <p class="footer-desc">Artisan tous corps d'état dans les Bouches-du-Rhône. Qualité, réactivité et transparence pour tous vos projets de construction et rénovation.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#services">Maçonnerie</a></li>
+            <li><a href="#services">Plâtrerie</a></li>
+            <li><a href="#services">Plomberie</a></li>
+            <li><a href="#services">Électricité</a></li>
+            <li><a href="#services">Carrelage</a></li>
+            <li><a href="#services">Peinture</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Infos</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#realisations">Réalisations</a></li>
+            <li><a href="#zone">Zone d'intervention</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Devis gratuit</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Lako Pose · Artisan BTP Bouches-du-Rhône</span>
+        <span>Fait avec ❤️ en PACA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.querySelectorAll('.mobile-link, .mobile-menu .btn').forEach(el => {
+      el.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reveals.forEach(el => { el.style.transition = 'none'; el.classList.add('visible'); });
+    }
+
+    // Form
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('form-success');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Envoi...';
+      setTimeout(() => {
+        submitBtn.style.display = 'none';
+        successMsg.style.display = 'block';
+        form.reset();
+      }, 1200);
+    });
+
+    // Counter animation
+    function animateCounter(el, target) {
+      let start = 0;
+      const duration = 1500;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(step);
+    }
+    const statValues = document.querySelectorAll('.hero-stat-value');
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const suffix = el.querySelector('span')?.textContent || '';
+          const target = parseInt(el.textContent);
+          animateCounter({ set textContent(v) { el.innerHTML = v + '<span>' + suffix + '</span>'; } }, target);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statValues.forEach(el => counterObs.observe(el));
+  </script>
+
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin 1s linear infinite; }
+  </style>
+</body>
+</html>

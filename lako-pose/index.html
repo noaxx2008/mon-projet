@@ -146,9 +146,16 @@
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
+      background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=70');
+      background-size: cover; background-position: center;
+      filter: brightness(.25) saturate(.6);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(249,115,22,.12) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(249,115,22,.06) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(249,115,22,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(249,115,22,.08) 0%, transparent 60%);
     }
     .hero-grid {
       position: absolute; inset: 0; z-index: 0;
@@ -800,10 +807,7 @@
         <div class="about-grid">
           <div class="about-image reveal">
             <div class="about-img-wrap">
-              <div class="about-img-placeholder">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                <span style="font-size:.85rem">Photo de l'artisan</span>
-              </div>
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" alt="Artisan au travail sur un chantier de rénovation" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
             </div>
             <div class="about-badge-float">
               <div class="num">10+</div>
@@ -860,8 +864,8 @@
         </div>
         <div class="realization-grid">
           <div class="realization-card reveal">
-            <div class="realization-img" style="background: linear-gradient(135deg, #1a2236, #0f172a);">
-              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <div class="realization-img" style="background:#0f172a;">
+              <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="Villa rénovation complète" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85;" />
             </div>
             <div class="realization-overlay">
               <div>
@@ -871,8 +875,8 @@
             </div>
           </div>
           <div class="realization-card reveal reveal-delay-1">
-            <div class="realization-img" style="background: linear-gradient(135deg, #1e1a2e, #0f1218);">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <div class="realization-img" style="background:#0f1218;">
+              <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Rénovation salle de bain carrelage" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85;" />
             </div>
             <div class="realization-overlay">
               <div>
@@ -882,8 +886,8 @@
             </div>
           </div>
           <div class="realization-card reveal reveal-delay-2">
-            <div class="realization-img" style="background: linear-gradient(135deg, #1a2a1e, #0f1812);">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="realization-img" style="background:#0f1812;">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Terrasse extérieure rénovée" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85;" />
             </div>
             <div class="realization-overlay">
               <div>
@@ -893,8 +897,8 @@
             </div>
           </div>
           <div class="realization-card reveal">
-            <div class="realization-img" style="background: linear-gradient(135deg, #2a1a1a, #180f0f);">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+            <div class="realization-img" style="background:#180f0f;">
+              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Installation tableau électrique" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85;" />
             </div>
             <div class="realization-overlay">
               <div>
@@ -904,8 +908,8 @@
             </div>
           </div>
           <div class="realization-card reveal reveal-delay-1">
-            <div class="realization-img" style="background: linear-gradient(135deg, #1a1e2a, #0f1218);">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width=".8"><path d="M2 20h20M4 20V8l8-6 8 6v12"/></svg>
+            <div class="realization-img" style="background:#0f1218;">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Rénovation cuisine moderne" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.85;" />
             </div>
             <div class="realization-overlay">
               <div>

@@ -1141,7 +1141,7 @@
             </div>
           </div>
 
-          <form class="form reveal reveal-delay-1" id="contactForm" novalidate aria-label="Formulaire de devis">
+          <form class="form reveal reveal-delay-1" id="contactForm" novalidate aria-label="Formulaire de devis" action="https://formspree.io/f/REMPLACER_PAR_VOTRE_ID" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="nom">Nom <span aria-hidden="true">*</span></label>
@@ -1284,11 +1284,25 @@
       if (!form.checkValidity()) { form.reportValidity(); return; }
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Envoi...';
-      setTimeout(() => {
-        submitBtn.style.display = 'none';
-        successMsg.style.display = 'block';
-        form.reset();
-      }, 1200);
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(res => {
+        if (res.ok) {
+          submitBtn.style.display = 'none';
+          successMsg.style.display = 'block';
+          form.reset();
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Envoyer ma demande';
+          alert("Une erreur est survenue, merci de réessayer ou de nous appeler directement.");
+        }
+      }).catch(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Envoyer ma demande';
+        alert("Une erreur est survenue, merci de réessayer ou de nous appeler directement.");
+      });
     });
 
     // Counter animation
